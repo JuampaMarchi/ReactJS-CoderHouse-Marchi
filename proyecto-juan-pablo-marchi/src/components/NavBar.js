@@ -1,29 +1,15 @@
-import { buildQueries } from '@testing-library/dom';
-import { findByLabelText } from '@testing-library/dom'
 import React from 'react'
-import CartWidget from './CartWidget'
-
-const navStyles = {
-    display: 'flex',
-    listStyleType: 'none'
-}
-const itemStyle = {
-    marginRight: '15px',
-
-}
+import {Box, Grid, GridItem, IconButton} from '@chakra-ui/react'
+import {HiShoppingCart} from "react-icons/hi"
 
 function NavBar(){
-
     return (
-        <div style={{backgroundColor: 'blue'}}>
-            <ul style={navStyles}>
-                <li style={itemStyle}>Home</li>
-                <li style={itemStyle}>Quienes Somos</li>
-                <li style={itemStyle}>Galeria</li>
-                <li style={itemStyle}>Productos</li>
-                <li style={itemStyle}></li>
-            </ul>
-        </div>
+        <Grid templateColumns="repeat(5, 1fr)" gap={6}>
+            <Box textColor="white" w="100%" h="10" bg="green.500" >Home</Box>
+            <Box textColor="white" w="100%" h="10" bg="green.500" >Quienes Somos</Box>
+            <Box textColor="white" w="100%" h="10" bg="green.500" >Productos</Box>
+            <IconButton aria-label="Cart" colorScheme="green" icon={<HiShoppingCart />} />
+        </Grid>
     )
 }
 
