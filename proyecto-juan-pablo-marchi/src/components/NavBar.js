@@ -1,6 +1,7 @@
 import { buildQueries } from '@testing-library/dom';
 import { findByLabelText } from '@testing-library/dom'
 import React from 'react'
+import CartWidget from './CartWidget'
 
 const navStyles = {
     display: 'flex',
@@ -20,7 +21,7 @@ function NavBar(){
                 <li style={itemStyle}>Quienes Somos</li>
                 <li style={itemStyle}>Galeria</li>
                 <li style={itemStyle}>Productos</li>
-                <li style={itemStyle}>Contacto</li>
+                <li style={itemStyle}></li>
             </ul>
         </div>
     )
