@@ -25,24 +25,22 @@ class ItemListContainer extends React.Component{
             articulos: datosArticulos,
         }
 
-    componentDidUpdate(){
-        console.log('me actualice')
+    botonCard = () => {
+        const newArticle = {
+            nombre: 'articulo nuevo',
+            id: 444,
+            precio: 40
+        }
+        this.setState({
+            articulos: [ ... this.state.articulos, newArticle]
+        })
     }
 
     render(){
         return (
-            /*<div>
-                Stock
-                {this.state.articulos.map((item) => 
-                    <div>
-                        <h1>{item.nombre}</h1>
-                        <h2>{item.id}</h2>
-                        <h3>{item.precio}</h3>
-                    </div>
-                )}
-            </div>*/
             <div>
                 <CartWidget baseArticulos={this.state.articulos} />
+                <button onClick={this.botonCard}>Agregar Card</button>
             </div>
         )
     }
