@@ -56,7 +56,7 @@ function ItemListHook(){
             addGame(games).then((resultado)=>
             setGames(resultado))
             }
-        }>Agregar Game</button>
+        }>Agregar Articulo</button>
         <ItemCount stock={5} initial={1} onAdd={onAdd} />
         </>
     )
