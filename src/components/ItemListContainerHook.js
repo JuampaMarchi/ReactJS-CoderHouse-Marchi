@@ -1,26 +1,7 @@
 import React, {useState, useEffect} from 'react';
-import ItemCount from './ItemCount';
 import ItemList from './ItemList';
 import {Grid, GridItem} from '@chakra-ui/react'
 import {DATA} from './json/games';
-
-const datosArticulos = [
-    {
-        nombre: 'articulo1',
-        id: 111,
-        precio: 10 
-    },
-    {
-        nombre: 'articulo2',
-        id: 222,
-        precio: 20
-    },
-    {
-        nombre: 'articulo3',
-        id: 333,
-        precio: 30
-    }
-]
 
 function ItemListHook(){
     const [games, setGames] = useState(DATA)
@@ -35,6 +16,7 @@ function ItemListHook(){
             setTimeout(()=>{
                 const newGame = {
                     title: 'articulo nuevo',
+                    id:'newId',
                     releaseDate: '2021',
                     genre: 'juego',
                     platform: ['plataforma'],
@@ -57,7 +39,6 @@ function ItemListHook(){
             setGames(resultado))
             }
         }>Agregar Articulo</button>
-        <ItemCount stock={5} initial={1} onAdd={onAdd} />
         </>
     )
 }

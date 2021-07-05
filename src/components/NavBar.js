@@ -1,15 +1,39 @@
 import React from 'react'
-import {Box, Grid, GridItem, IconButton} from '@chakra-ui/react'
-import {HiShoppingCart} from "react-icons/hi"
+import {Link} from 'react-router-dom'
+import {Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator, IconButton} from '@chakra-ui/react';
+import {HiShoppingCart} from 'react-icons/hi'
 
 function NavBar(){
     return (
-        <Grid templateColumns="repeat(5, 1fr)" gap={6}>
-            <Box textColor="white" w="100%" h="10" bg="green.500" >Home</Box>
-            <Box textColor="white" w="100%" h="10" bg="green.500" >Quienes Somos</Box>
-            <Box textColor="white" w="100%" h="10" bg="green.500" >Productos</Box>
-            <IconButton aria-label="Cart" colorScheme="green" icon={<HiShoppingCart />} />
-        </Grid>
+        <Box display="flex" justifyContent="center">
+            <Breadcrumb spacing="10px" separator="-" bg="yellowgreen">
+                <BreadcrumbItem>
+                    <BreadcrumbLink as={Link} to="/">
+                        Inicio
+                    </BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbItem>
+                    <BreadcrumbLink as={Link} to="/about">
+                        Quienes Somos
+                    </BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbItem>
+                    <BreadcrumbLink as={Link} to="/products">
+                        Productos
+                    </BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbItem>
+                    <BreadcrumbLink as={Link} to="/contact">
+                        Contacto
+                    </BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbItem>
+                    <BreadcrumbLink>
+                        <IconButton aria-label="cart" icon={<HiShoppingCart />} />  
+                    </BreadcrumbLink>
+                </BreadcrumbItem>
+            </Breadcrumb>
+        </Box>
     )
 }
 

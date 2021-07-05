@@ -1,6 +1,7 @@
 export const DATA = [
     {
         title:"The Last of Us",
+        id:"tlou2",
         releaseDate:2013,
         genre:"accion",
         platform:["playstation"],
@@ -10,6 +11,7 @@ export const DATA = [
     },
     {
         title:"Tomb Raider",
+        id:"tr",
         releaseDate:2013,
         genre:"accion",
         platform:["playstation","pc"],
@@ -19,15 +21,17 @@ export const DATA = [
     },
     {
         title:"Resident Evil 4",
+        id:"re4",
         releaseDate:2005,
         genre:"accion",
         platform:["playstation","pc","switch"],
         type:"classic",
         cost:800,
-        coverLink:"https://static.wikia.nocookie.net/doblaje-fanon/images/3/3c/Resident_Evil_4_Cover_PC_de_2007.jpg/revision/latest?cb=20190301154419&path-prefix=es"
+        coverLink:"https://www.mobygames.com/images/covers/l/387823-resident-evil-4-playstation-4-front-cover.jpg"
     },
     {
         title:"Ori and the Blind Forest",
+        id:"oatbf",
         releaseDate:2015,
         genre:"platformer",
         platform:["pc","switch"],
@@ -37,6 +41,7 @@ export const DATA = [
     },
     {
         title:"Shovel Knight: Treasure Trove",
+        id:"sktt",
         releaseDate:2014,
         genre:"platformer",
         platform:["pc","switch","playstation"],
