@@ -4,11 +4,10 @@ import {DATA} from '../components/json/games';
 import {Grid, GridItem} from '@chakra-ui/react'
 
 function ProductDetail(){
-    const {id} = useParams()
+    const {productId} = useParams()
     const result = DATA.filter((game)=>{
-        return game.id === id
+        return game.id === productId
     })[0]
-    console.log(result)
     return(
         <Grid templateRows="repeat(5, 1fr)" templateColumns="repeat(3, 1fr)" gap={4} bg="yellowgreen">
             <GridItem rowSpan={5} colSpan={1}>

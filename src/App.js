@@ -7,6 +7,7 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import Products from './pages/Products';
 import ProductDetail from './pages/ProductDetail';
+import ProductCategory from './pages/ProductCategory';
 //components
 import NavBar from './components/NavBar';
 
@@ -28,7 +29,10 @@ function App() {
         <Route exact path="/products">
           <Products />
         </Route>
-        <Route exact path="/products/:id">
+        <Route exact path="/category/:categoryId">
+          <ProductCategory />
+        </Route>
+        <Route exact path="/products/:productId">
           <ProductDetail />
         </Route>
         <Route exact path="/contact">

@@ -23,7 +23,7 @@ export const DATA = [
         title:"Resident Evil 4",
         id:"re4",
         releaseDate:2005,
-        genre:"accion",
+        genre:"survival",
         platform:["playstation","pc","switch"],
         type:"classic",
         cost:800,
