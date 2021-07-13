@@ -10,9 +10,12 @@ import ProductDetail from './pages/ProductDetail';
 import ProductCategory from './pages/ProductCategory';
 //components
 import NavBar from './components/NavBar';
+//context
+import {CartContext} from './context/cartContext';
 
 function App() {
   return (
+  <CartContext.Provider value={[1,2,3]}>
   <div>
     <Router>
       <NavBar />
@@ -40,7 +43,8 @@ function App() {
         </Route>
       </Switch>
     </Router>
-  </div> 
+  </div>
+  </CartContext.Provider>
   );
 }
 

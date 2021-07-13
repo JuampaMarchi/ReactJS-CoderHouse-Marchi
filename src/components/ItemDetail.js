@@ -8,6 +8,7 @@ export default function ItemDetail(props){
             <h2>{props.item.type}</h2>
             <h3>{props.item.cost}</h3>
             <img sizes="50%" src={props.item.coverLink} />
+            <button >Terminar compra</button>
         </Box>    
     )
 }
