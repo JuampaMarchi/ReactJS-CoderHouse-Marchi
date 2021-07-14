@@ -8,6 +8,7 @@ import Contact from './pages/Contact';
 import Products from './pages/Products';
 import ProductDetail from './pages/ProductDetail';
 import ProductCategory from './pages/ProductCategory';
+import Cart from './pages/Cart';
 //components
 import NavBar from './components/NavBar';
 //context
@@ -40,6 +41,9 @@ function App() {
         </Route>
         <Route exact path="/contact">
           <Contact />
+        </Route>
+        <Route exact path="/cart">
+          <Cart />
         </Route>
       </Switch>
     </Router>

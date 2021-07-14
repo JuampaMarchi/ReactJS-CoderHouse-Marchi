@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
-import {Button} from '@chakra-ui/react';
+import {Box, Button} from '@chakra-ui/react';
 
-function ItemCount({stock, initial, onAdd}){
+function ItemCount({stock, initial, onAdd, hideButton}){
     const [count, setCount] = useState(initial)
 
     const restItem = () => {
@@ -13,12 +13,15 @@ function ItemCount({stock, initial, onAdd}){
 
     return (
         <>
-        <div>
+        <Box hidden={hideButton}>
+        <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
             <Button onClick={restItem} colorScheme='green'>-</Button>
             <span style={{padding: '5px'}}>{count}</span>
             <Button onClick={sumItem} colorScheme='green'>+</Button>
         </div>
         <Button onClick={() => onAdd(count)} colorScheme='green' style={{marginTop: '5px'}}>Agregar al Carrito</Button>
+        </Box>
+        <span hidden={!hideButton}>Cantidad a Comprar: {count}</span>
         </>
     )
 }

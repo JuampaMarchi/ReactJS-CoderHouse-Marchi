@@ -35,7 +35,7 @@ function NavBar(){
                 </BreadcrumbItem>
                 <BreadcrumbItem>
                     <BreadcrumbLink>
-                        <IconButton aria-label="cart" icon={<HiShoppingCart />} />  
+                        <IconButton aria-label="cart" icon={<HiShoppingCart />} as={Link} to="/cart" />  
                     </BreadcrumbLink>
                 </BreadcrumbItem>
             </Breadcrumb>
