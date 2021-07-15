@@ -1,18 +1,28 @@
-import React, {useContext} from 'react';
-import {Box} from '@chakra-ui/react';
+import React, {useState, useEffect} from 'react';
+import {Box, Button} from '@chakra-ui/react';
 import {Link} from 'react-router-dom';
-import { CartContext } from '../context/cartContext';
+import ItemCount from './ItemCount';
 
 export default function Item(props){
-    const precios = useContext(CartContext)
+    const [quantityToAdd, setQuantityToAdd] = useState(undefined)
+    const [isHidden, setIsHidden] = useState(true)
+    const onAdd = (number) => {
+        setQuantityToAdd(number)
+        alert(`Se agregaron ${number} items al carrito`)
+    }  
+    useEffect(()=>{
+        quantityToAdd ? setIsHidden(false) : setIsHidden(true)
+    }, [quantityToAdd])
+
     return (
+        <>
         <Box w="auto" h="auto" border="2px" borderColor="black" backgroundColor="greenyellow">
-            <h1><Link to={`/products/${props.id}`}>{props.title}</Link></h1>
-            <h2>{props.type}</h2>
-            <h3>{props.cost}</h3>
-            <h4>Otros Precios: {precios.map((param)=>{
-                return <span>{param}</span>
-            })}</h4>
-        </Box>    
+            <h1><Link to={`/products/${props.products.id}`}>{props.products.title}</Link></h1>
+            <h2>{props.products.type}</h2>
+            <h3>{props.products.cost}</h3>
+        </Box>
+        <ItemCount hideButton={!isHidden} stock={5} initial={0} onAdd={onAdd} />
+        <Button id="go-to-cart" hidden={isHidden} colorScheme="blue" as={Link} to="/cart">Terminar Compra</Button>
+        </>  
     )
 }
