@@ -7,7 +7,7 @@ export default function ItemList(props){
     return (
         props.games.map((item) =>
             <Box p="10px" m="5px" display="flex" flexDirection="column" alignItems="center" width="auto">
-                <Item  products={{... item}} />
+                <Item  products={item} />
             </Box>
         )
     )

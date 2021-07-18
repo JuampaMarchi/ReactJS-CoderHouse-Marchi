@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 //pages
@@ -12,12 +12,12 @@ import Cart from './pages/Cart';
 //components
 import NavBar from './components/NavBar';
 //context
-import {CartContext} from './context/cartContext';
+import {CartContext} from './context/CartContext';
 
 function App() {
+  const [cartContent, setCartContent] = useState([])
   return (
-  <CartContext.Provider value={[1,2,3]}>
-  <div>
+  <CartContext.Provider value={{cartContent, setCartContent}}>
     <Router>
       <NavBar />
       <Switch>
@@ -47,7 +47,6 @@ function App() {
         </Route>
       </Switch>
     </Router>
-  </div>
   </CartContext.Provider>
   );
 }

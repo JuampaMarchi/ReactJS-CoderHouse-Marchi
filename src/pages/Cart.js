@@ -1,10 +1,9 @@
 import React from 'react';
+import CartWidget from '../components/CartWidget';
 
 function Cart(){
     return (
-        <div>
-            Este es el Cart
-        </div>
+        <CartWidget />
     )
 }
 

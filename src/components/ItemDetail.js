@@ -1,7 +1,10 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {Box} from '@chakra-ui/react';
 
+
 export default function ItemDetail(props){
+  
+
     return (
         <Box w="auto" h="auto" border="2px" borderColor="black" backgroundColor="greenyellow">
             <h1>{props.item.title}</h1>
