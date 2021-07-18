@@ -5,12 +5,12 @@ import {Box, Button, Flex} from '@chakra-ui/react'
 
 function CartWidget(){
     const cartItems = useContext(CartContext)
-    console.log('cartItems', cartItems)
+
     const clearCart = ()=>{
         cartItems.setCartContent([])
     }
     const removeItem = (id)=>{
-
+        cartItems.setCartContent(cartItems.cartContent.filter(currentItem => currentItem.id !== id))
     }
     return (
         <Flex flexDirection="column" alignItems="center">
@@ -20,7 +20,9 @@ function CartWidget(){
                     <Box w="600px" h="auto" border="2px" borderColor="black" backgroundColor="greenyellow" margin="10px">
                         <h1>{items.item}</h1>
                         <h2>{items.quantity}</h2>
-                        <Button>Quitar producto</Button>
+                        <Button onClick={()=>{
+                            removeItem(items.id)
+                        }}>Quitar producto</Button>
                     </Box>
                 </Box>
             )
