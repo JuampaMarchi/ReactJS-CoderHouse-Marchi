@@ -13,11 +13,12 @@ export default function Item(props) {
 
     const isInCart = (id) => cart.cartContent.filter((currentItem) => id === currentItem.id).length !== 0;
 
-    const addToCart = (item, id, quantity) => {
+    const addToCart = (item, id, price, quantity) => {
         const purchase = {
             item: item,
             id: id,
-            quantity: quantity,
+            price: price,
+            quantity: quantity
         };
         cart.setCartContent([...cart.cartContent, purchase]);
     };
@@ -32,11 +33,11 @@ export default function Item(props) {
                     <Link to={`/products/${props.products.id}`}>{props.products.title}</Link>
                 </h1>
                 <h2>{props.products.type}</h2>
-                <h3>{props.products.cost}</h3>
+                <h3>$ {props.products.cost}</h3>
             </Box>
-            <ItemCount hideButton={!isHidden} stock={5} initial={0} onAdd={onAdd} />
+            <ItemCount hideButton={!isHidden} stock={5} onAdd={onAdd} />
             <Button onClick={() => {
-                !isInCart(props.products.id) ? addToCart(props.products.title, props.products.id, quantityToAdd)
+                !isInCart(props.products.id) ? addToCart(props.products.title, props.products.id, props.products.cost, quantityToAdd)
                 : alert("Este producto ya esta en tu carrito")}} id="go-to-cart" hidden={isHidden} colorScheme="blue" as={Link} to="/cart">Terminar Compra</Button>
         </>
     );
