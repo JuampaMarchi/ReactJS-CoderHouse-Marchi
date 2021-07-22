@@ -7,21 +7,10 @@ import { CartContext } from "../context/CartContext";
 export default function Item(props) {
     const [quantityToAdd, setQuantityToAdd] = useState(undefined);
     const [isHidden, setIsHidden] = useState(true);
-    const cart = useContext(CartContext);
+    const context = useContext(CartContext);
 
     const onAdd = (number) => setQuantityToAdd(number);
 
-    const isInCart = (id) => cart.cartContent.filter((currentItem) => id === currentItem.id).length !== 0;
-
-    const addToCart = (item, id, price, quantity) => {
-        const purchase = {
-            item: item,
-            id: id,
-            price: price,
-            quantity: quantity
-        };
-        cart.setCartContent([...cart.cartContent, purchase]);
-    };
     useEffect(() => {
         quantityToAdd ? setIsHidden(false) : setIsHidden(true);
     }, [quantityToAdd]);
@@ -37,8 +26,14 @@ export default function Item(props) {
             </Box>
             <ItemCount hideButton={!isHidden} stock={5} onAdd={onAdd} />
             <Button onClick={() => {
-                !isInCart(props.products.id) ? addToCart(props.products.title, props.products.id, props.products.cost, quantityToAdd)
-                : alert("Este producto ya esta en tu carrito")}} id="go-to-cart" hidden={isHidden} colorScheme="blue" as={Link} to="/cart">Terminar Compra</Button>
+                if(!context.isInCart(props.products.id)){
+                    const product = props.products
+                    product.count = quantityToAdd
+                    context.addToCart(product)
+                } else {
+                    alert("Este producto ya esta en tu carrito")}
+                }}
+            id="go-to-cart" hidden={isHidden} colorScheme="blue" as={Link} to="/cart">Terminar Compra</Button>
         </>
     );
 }

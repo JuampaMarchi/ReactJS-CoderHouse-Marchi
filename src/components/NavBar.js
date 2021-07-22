@@ -1,4 +1,5 @@
-import React from 'react'
+import React, {useContext} from 'react'
+import { CartContext } from '../context/CartContext'
 import {Link} from 'react-router-dom'
 import {Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator, IconButton, Heading} from '@chakra-ui/react';
 import {HiShoppingCart} from 'react-icons/hi'
@@ -7,6 +8,7 @@ function NavBar(){
     const accion = "accion"
     const survival = "survival"
     const platformer = "platformer"
+    const context = useContext(CartContext)
     return (
         <Box display="flex" flexDirection="column" alignItems="center">
             <Heading as={Link} to="/" bg="lightgray">
@@ -35,7 +37,8 @@ function NavBar(){
                 </BreadcrumbItem>
                 <BreadcrumbItem>
                     <BreadcrumbLink>
-                        <IconButton aria-label="cart" icon={<HiShoppingCart />} as={Link} to="/cart" />  
+                        <IconButton aria-label="cart" icon={<HiShoppingCart />} as={Link} to="/cart"/>
+                        ({context.cartContent.length})
                     </BreadcrumbLink>
                 </BreadcrumbItem>
             </Breadcrumb>

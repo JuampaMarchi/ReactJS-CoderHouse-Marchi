@@ -1,22 +1,25 @@
-import React,  {createContext, useState} from 'react';
+import React,  {createContext, useState, useEffect} from 'react';
 
 export const CartContext = createContext();
 
 export const CartContextProvider = ({children}) =>{
     const [cartContent, setCartContent] = useState([])
-    const [count, setCount] = useState(1)
 
-    const restItem = () => {
-        count > 0 ? setCount(count - 1) : alert('Las cantidades no pueden ser negativas')
-    }
-    const sumItem = (stock) => {
-        count < stock ? setCount(count + 1) : alert('Las cantidades no pueden superar al stock')
+    const clearCart = () => setCartContent([]);
+
+    const isInCart = (id) => cartContent.filter((currentItem) => id === currentItem.id).length !== 0;
+
+    const removeItem = (id)=>{
+        setCartContent(cartContent.filter(currentItem => currentItem.id !== id))
     }
 
-    const onAdd = (number) => setCount(number)
+    const addToCart = (item) => {
+        const purchaseItem = item
+        setCartContent([...cartContent, purchaseItem]);
+    };
 
     return (
-        <CartContext.Provider value={{cartContent, setCartContent, count, setCount, onAdd, restItem, sumItem}}>
+        <CartContext.Provider value={{cartContent, setCartContent, clearCart, removeItem, isInCart, addToCart}}>
             {children}
         </CartContext.Provider>
     )
