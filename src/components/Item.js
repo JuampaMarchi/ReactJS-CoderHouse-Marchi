@@ -27,6 +27,7 @@ export default function Item(props) {
             <ItemCount hideButton={!isHidden} stock={5} onAdd={onAdd} />
             <Button onClick={() => {
                 if(!context.isInCart(props.products.id)){
+                    context.setCartCount(quantityToAdd)
                     const product = props.products
                     product.count = quantityToAdd
                     context.addToCart(product)
