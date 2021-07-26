@@ -7,7 +7,6 @@ import {Box, Button, Flex} from '@chakra-ui/react'
 
 function CartWidget(){
     const context = useContext(CartContext)
-    console.log("context.cartCount",context.cartCount)
     
     if(context.cartContent.length != 0){
         return (
@@ -18,13 +17,13 @@ function CartWidget(){
                         <Box w="600px" h="auto" border="2px" borderColor="black" backgroundColor="greenyellow" margin="10px">
                             <h1>Producto: {item.item}</h1>
                             <Flex justifyContent='space-between'>
-                                <h2 style={{marginRight: '10px'}}>Cantidad: {context.cartCount}</h2>
+                                <h2 style={{marginRight: '10px'}}>Cantidad: {item.count}</h2>
                                 Modificar Cantidades:
-                                <Button colorScheme='yellow' onClick={()=>context.setCartCount(context.cartCount - 1)} >-</Button>
-                                <Button colorScheme='yellow' onClick={()=>context.setCartCount(context.cartCount + 1)} >+</Button>
+                                <Button colorScheme='yellow' onClick={()=> context.modifyQty(item.id, item.count - 1)} >-</Button>
+                                <Button colorScheme='yellow' onClick={()=> context.modifyQty(item.id, item.count + 1)} >+</Button>
                             </Flex>
                             <h2>Precio: $ {item.cost}</h2>
-                            <h2 style={{fontWeight: "bold"}}>Total: $ {context.cartCount * item.cost}</h2>
+                            <h2 style={{fontWeight: "bold"}}>Total: $ {item.count * item.cost}</h2>
                             <Button onClick={()=>context.removeItem(item.id)}>Quitar producto</Button>
                         </Box>
                     </Box>
