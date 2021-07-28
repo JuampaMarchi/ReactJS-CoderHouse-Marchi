@@ -3,10 +3,40 @@ import {Link} from 'react-router-dom'
 //Context
 import {CartContext} from '../context/CartContext'
 //Styles
-import {Box, Button, Flex} from '@chakra-ui/react'
+import {Box, Button, Flex, Stack, Input} from '@chakra-ui/react'
+//Firebase
+import {getFirestore, getFirebase} from '../firebase'
 
 function CartWidget(){
     const context = useContext(CartContext)
+    const [orderId, setOrderId] = useState('')
+
+    const createOrder = () => {
+        const db = getFirestore()
+        const order = db.collection('orders')
+
+        const buyerInfo = {
+            buyerName: document.getElementById('userName').value,
+            buyerPhone: document.getElementById('userPhone').value,
+            buyerEmail: document.getElementById('userEmail').value
+        }
+        const cartItems = context.cartContent
+        const total = cartItems.reduce((acum, item) => acum + item.count * item.cost, 0)
+        const newOrder = {
+            buyer: buyerInfo,
+            items: cartItems,
+            total,
+        }
+        order.add(newOrder).then(({id}) => {
+            setOrderId(id)
+        }).catch(error => {
+            console.log('error arrojado', error)
+        }).finally(() => {
+            context.setCartContent([])
+            setOrderId('')
+            alert('Muchas Gracias por su Compra!')
+        })
+    }
     
     if(context.cartContent.length != 0){
         return (
@@ -29,8 +59,14 @@ function CartWidget(){
                     </Box>
                 )
             })}
-            <Button w="200px" onClick={()=>context.clearCart()} colorScheme="teal">Vaciar carrito</Button>
-            <Button w="200px" as={Link} to="/products" colorScheme="cyan" margin="5px">Seguir Comprando</Button>
+            <Stack w='500px' spacing="4" margin="10px" padding="10" bgColor='green.300'>
+                <Input id="userName" focusBorderColor="black" placeholder="Nombre y Apellido" size="sm" bgColor='white' />
+                <Input id="userPhone" focusBorderColor="black" placeholder="Numero de Teléfono" size="sm" bgColor='white' />
+                <Input id="userEmail" focusBorderColor="black" placeholder="Correo Electrónico" size="sm" bgColor='white' />
+            </Stack>
+            <Button w="200px" colorScheme="teal" margin="5px" onClick={()=>context.clearCart()}>Vaciar carrito</Button>
+            <Button w="200px" colorScheme="cyan" margin="5px" as={Link} to="/products" >Seguir Comprando</Button>
+            <Button w="300px" colorScheme="blue" margin="5px" onClick={()=>createOrder()}>Generar Orden</Button>
             </Flex>
         )
     } else {
