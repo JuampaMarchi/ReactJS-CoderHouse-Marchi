@@ -5,7 +5,8 @@ import {CartContext} from '../context/CartContext'
 //Styles
 import {Box, Button, Flex, Stack, Input} from '@chakra-ui/react'
 //Firebase
-import {getFirestore, getFirebase} from '../firebase'
+import {getFirestore} from '../firebase'
+import firebase from 'firebase/app'
 
 function CartWidget(){
     const context = useContext(CartContext)
@@ -26,6 +27,7 @@ function CartWidget(){
             buyer: buyerInfo,
             items: cartItems,
             total,
+            date: firebase.firestore.Timestamp.now(),
         }
         order.add(newOrder).then(({id}) => {
             setOrderId(id)
@@ -34,9 +36,12 @@ function CartWidget(){
         }).finally(() => {
             context.setCartContent([])
             setOrderId('')
-            alert('Muchas Gracias por su Compra!')
+            alert(`Muchas Gracias por su compra ${buyerInfo.buyerName}. Se enviará un correo a ${buyerInfo.buyerEmail} con los detalles de su compra. Que tenga un buen dia! `)
         })
     }
+    useEffect(()=>{
+        //console.log(firebase.firestore.Timestamp.now())
+    }, [])
     
     if(context.cartContent.length != 0){
         return (
