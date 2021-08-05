@@ -1,7 +1,7 @@
 import React, {useContext} from 'react'
 import { CartContext } from '../context/CartContext'
 import {Link} from 'react-router-dom'
-import {Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator, IconButton, Heading} from '@chakra-ui/react';
+import {Flex, Breadcrumb, BreadcrumbItem, BreadcrumbLink, IconButton, Heading} from '@chakra-ui/react';
 import {HiShoppingCart} from 'react-icons/hi'
 
 function NavBar(){
@@ -10,11 +10,11 @@ function NavBar(){
     const platformer = "platformer"
     const context = useContext(CartContext)
     return (
-        <Box display="flex" flexDirection="column" alignItems="center">
-            <Heading as={Link} to="/" bg="lightgray">
+        <Flex flexDirection="column" alignItems="center" border='double' borderRadius='md'>
+            <Heading as={Link} to="/" bg="lightgray" textAlign="center" p='5'>
                 Bienvenido a Gaming Cove!!!
             </Heading>
-            <Breadcrumb spacing="10px" separator="-" bg="yellowgreen">
+            <Breadcrumb spacing="10px" separator="-" bg='lightblue' border='solid' borderRadius='md'>
                 <BreadcrumbItem>
                     <BreadcrumbLink as={Link} to="/">
                         Inicio
@@ -43,7 +43,7 @@ function NavBar(){
                 </BreadcrumbItem>
             </Breadcrumb>
             <Breadcrumb>
-                <h1 style={{fontWeight: 'bold', textDecoration: 'underline'}}>Categorias:</h1>
+                <Heading fontWeight='bold' fontSize='md' textDecoration='underline' textAlign='center'>Categorias:</Heading>
                 <BreadcrumbItem>
                     <BreadcrumbLink as={Link} to={`/category/${accion}`}>
                         Acción
@@ -60,7 +60,7 @@ function NavBar(){
                     </BreadcrumbLink>
                 </BreadcrumbItem>
             </Breadcrumb>
-        </Box>
+        </Flex>
     )
 }
 

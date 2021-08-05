@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Box, Button } from "@chakra-ui/react";
+import { Box, Button, Flex } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import ItemCount from "./ItemCount";
 import { CartContext } from "../context/CartContext";
@@ -16,13 +16,13 @@ export default function Item(props) {
     }, [quantityToAdd]);
 
     return (
-        <>
+        <Flex p='10px' m='5px' flexDirection='column' alignItems='center' w='auto'>
             <Box w="auto" h="auto" border="2px" borderColor="black" backgroundColor="greenyellow">
                 <h1>
                     <Link to={`/products/${props.products.id}`}>{props.products.title}</Link>
                 </h1>
                 <h2>{props.products.type}</h2>
-                <h3>$ {props.products.cost}</h3>
+                <h3>$ {props.products.price}</h3>
             </Box>
             <ItemCount hideButton={!isHidden} stock={5} onAdd={onAdd} />
             <Button onClick={() => {
@@ -34,6 +34,6 @@ export default function Item(props) {
                     alert("Este producto ya esta en tu carrito")}
                 }}
             id="go-to-cart" hidden={isHidden} colorScheme="blue" as={Link} to="/cart">Terminar Compra</Button>
-        </>
+        </Flex>
     );
 }

@@ -1,4 +1,4 @@
-import React, {useContext, useState, useEffect} from 'react';
+import React, {useContext, useState} from 'react';
 import {Link} from 'react-router-dom'
 //Context
 import {CartContext} from '../context/CartContext'
@@ -39,9 +39,6 @@ function CartWidget(){
             alert(`Muchas Gracias por su compra ${buyerInfo.buyerName}. Se enviará un correo a ${buyerInfo.buyerEmail} con los detalles de su compra. Que tenga un buen dia! `)
         })
     }
-    useEffect(()=>{
-        //console.log(firebase.firestore.Timestamp.now())
-    }, [])
     
     if(context.cartContent.length != 0){
         return (

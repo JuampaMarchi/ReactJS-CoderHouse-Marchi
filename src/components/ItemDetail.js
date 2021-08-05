@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
-import { Grid, GridItem } from '@chakra-ui/react';
+import { Grid, GridItem, Box } from '@chakra-ui/react';
 import { getFirestore } from '../firebase';
+import Loader from './Loader'
 
 export default function ItemDetail(){
     const [itemDb, setItemDb] = useState([])
@@ -16,22 +17,20 @@ export default function ItemDetail(){
             if(querySnapshot.size === 0){
                 console.log('no results')
             }else{
-                console.log('query', querySnapshot)
                 setItemDb(querySnapshot.docs.map(doc => doc.data()))
             }
         }).catch(error =>{
             console.log('error', error)
         }).finally(()=> {
-            console.log('itemDb', itemDb)
             setLoading(false)
         })
     }, [])
 
     if(loading){
         return (
-            <div>
-                loading
-            </div>
+            <Box m='10'>
+                <Loader />
+            </Box>
         )
     }
     if(itemDb.length === 0){
@@ -43,7 +42,7 @@ export default function ItemDetail(){
     }
 
     return (
-        <Grid templateRows="repeat(5, 1fr)" templateColumns="repeat(3, 1fr)" gap={4} bg="yellowgreen">
+        <Grid templateRows='repeat(5, 1fr)' templateColumns='repeat(3, 1fr)' gap={4} bg='yellowgreen' p='10'>
             <GridItem rowSpan={5} colSpan={1}>
                 <img src={itemDb[0].coverLink} />
             </GridItem>
@@ -51,13 +50,13 @@ export default function ItemDetail(){
                 <span >Título: {itemDb[0].title}</span>
             </GridItem>
             <GridItem colSpan={2}>
-                <span >Género: {itemDb[0].genre}</span>
+                <span >Género: {itemDb[0].type}</span>
             </GridItem>
             <GridItem colSpan={2}>
                 <span >Lanzamiento: {itemDb[0].releaseDate}</span>
             </GridItem>
             <GridItem colSpan={2}>
-                <span >Precio: {itemDb[0].cost}</span>
+                <span >Precio: ${itemDb[0].price}</span>
             </GridItem>
         </Grid>
     )

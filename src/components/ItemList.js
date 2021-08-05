@@ -1,14 +1,15 @@
 import React from 'react';
 import Item from './Item';
-import {Box} from '@chakra-ui/react'
+import { Flex, WrapItem } from '@chakra-ui/react'
 
 export default function ItemList(props){
-    
+    console.log('props', props.games)
+
     return (
         props.games.map((item) =>
-            <Box p="10px" m="5px" display="flex" flexDirection="column" alignItems="center" width="auto">
+            <WrapItem>
                 <Item  products={item} />
-            </Box>
+            </WrapItem>
         )
     )
 }

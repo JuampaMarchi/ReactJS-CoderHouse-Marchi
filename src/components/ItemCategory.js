@@ -28,7 +28,7 @@ export default function ItemCategory(){
     }, [filteredItems])
 
     return (
-        <Grid templateColumns="repeat(5, 1fr)" gap={5} backgroundColor="pink" marginTop="5" pt="10px" pb="10px">
+        <Grid templateColumns='repeat(5, 1fr)' gap={5} bg='pink' mt='5' pt='10px' pb='10px'>
             <ItemList games={filteredItems}/>
         </Grid>
     )
