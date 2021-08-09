@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Box, Button, Flex } from "@chakra-ui/react";
+import { Box, Button, Flex, Grid, GridItem, Image, Text } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import ItemCount from "./ItemCount";
 import { CartContext } from "../context/CartContext";
@@ -16,14 +16,14 @@ export default function Item(props) {
     }, [quantityToAdd]);
 
     return (
-        <Flex p='10px' m='5px' flexDirection='column' alignItems='center' w='auto'>
-            <Box w="auto" h="auto" border="2px" borderColor="black" backgroundColor="greenyellow">
-                <h1>
-                    <Link to={`/products/${props.products.id}`}>{props.products.title}</Link>
-                </h1>
-                <h2>{props.products.type}</h2>
-                <h3>$ {props.products.price}</h3>
-            </Box>
+        <Flex p='10px' m='5px' flexDirection='column' alignItems='center' justifyContent='center' w='auto'>
+            <Grid templateRows='repeat(4, 1fr)' templateColumns='repeat(2, 1fr)' w='300' border='2px' gap={3} h='250px' w='300px' borderRadius='md' bgColor='white'>
+                <GridItem rowSpan={4} ><Image src={props.products.coverLink} h='100%' /></GridItem>
+                <GridItem  ><Text as='u'>Titulo:</Text><Link to={`/products/${props.products.id}`}> {props.products.title}</Link></GridItem>
+                <GridItem  ><Text as='u'>Genero:</Text> {props.products.type}</GridItem>
+                <GridItem  ><Text as='u'>Año:</Text> {props.products.releaseDate}</GridItem>
+                <GridItem  ><Text as='u'>Precio:</Text> {props.products.price}</GridItem>
+            </Grid>
             <ItemCount hideButton={!isHidden} stock={5} onAdd={onAdd} />
             <Button onClick={() => {
                 if(!context.isInCart(props.products.id)){

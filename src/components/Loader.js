@@ -4,7 +4,7 @@ const LoaderComp = () =>{
     return (
         <Loader
             type='Watch'
-            color='lightblue'
+            color='black'
             height='200'
             width='200'
         />

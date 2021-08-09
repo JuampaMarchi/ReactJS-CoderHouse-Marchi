@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
-import { Grid, GridItem, Box } from '@chakra-ui/react';
+import { Grid, GridItem, Box, Text, Image } from '@chakra-ui/react';
 import { getFirestore } from '../firebase';
 import Loader from './Loader'
 
@@ -42,12 +42,12 @@ export default function ItemDetail(){
     }
 
     return (
-        <Grid templateRows='repeat(5, 1fr)' templateColumns='repeat(3, 1fr)' gap={4} bg='yellowgreen' p='10'>
+        <Grid templateRows='repeat(5, 1fr)' templateColumns='repeat(3, 1fr)' gap={4} bg='white' p='10'>
             <GridItem rowSpan={5} colSpan={1}>
-                <img src={itemDb[0].coverLink} />
+                <Image src={itemDb[0].coverLink} />
             </GridItem>
             <GridItem colSpan={2}>
-                <span >Título: {itemDb[0].title}</span>
+                <h1 style={{fontSize: '40px'}} >{itemDb[0].title}</h1>
             </GridItem>
             <GridItem colSpan={2}>
                 <span >Género: {itemDb[0].type}</span>

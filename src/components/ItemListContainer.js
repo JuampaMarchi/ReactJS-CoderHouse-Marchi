@@ -1,9 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import { getFirestore } from '../firebase';
-import { Flex, Box, Wrap } from '@chakra-ui/react'
+import { Box, Wrap } from '@chakra-ui/react'
 import ItemList from './ItemList';
 import Loader from './Loader'
-
 
 export default function ItemListHook(){
     const [games, setGames] = useState([])
@@ -28,9 +27,11 @@ export default function ItemListHook(){
 
     if(!loading){
         return (
-            <Wrap backgroundColor='pink' marginTop='5' p='15px' spacing='30px'>
+            <>
+            <Wrap border='solid 8px' borderRadius='3xl' p='15px' spacing='30px' justify='center'>
                 <ItemList games={games} />
             </Wrap>
+            </>
         )
     }
 

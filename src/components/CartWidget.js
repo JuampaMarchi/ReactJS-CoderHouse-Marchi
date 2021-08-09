@@ -43,32 +43,31 @@ function CartWidget(){
     if(context.cartContent.length != 0){
         return (
             <Flex flexDirection="column" alignItems="center">
-            {context.cartContent.map((item)=>{
-                return (
-                    <Box style={{display: 'flex', justifyContent: 'center'}}>
-                        <Box w="600px" h="auto" border="2px" borderColor="black" backgroundColor="greenyellow" margin="10px">
-                            <h1>Producto: {item.item}</h1>
-                            <Flex justifyContent='space-between'>
-                                <h2 style={{marginRight: '10px'}}>Cantidad: {item.count}</h2>
-                                Modificar Cantidades:
-                                <Button colorScheme='yellow' onClick={()=> context.modifyQty(item.id, item.count - 1)} >-</Button>
-                                <Button colorScheme='yellow' onClick={()=> context.modifyQty(item.id, item.count + 1)} >+</Button>
-                            </Flex>
-                            <h2>Precio: $ {item.cost}</h2>
-                            <h2 style={{fontWeight: "bold"}}>Total: $ {item.count * item.cost}</h2>
-                            <Button onClick={()=>context.removeItem(item.id)}>Quitar producto</Button>
-                        </Box>
-                    </Box>
-                )
-            })}
-            <Stack w='500px' spacing="4" margin="10px" padding="10" bgColor='green.300'>
-                <Input id="userName" focusBorderColor="black" placeholder="Nombre y Apellido" size="sm" bgColor='white' />
-                <Input id="userPhone" focusBorderColor="black" placeholder="Numero de Teléfono" size="sm" bgColor='white' />
-                <Input id="userEmail" focusBorderColor="black" placeholder="Correo Electrónico" size="sm" bgColor='white' />
-            </Stack>
-            <Button w="200px" colorScheme="teal" margin="5px" onClick={()=>context.clearCart()}>Vaciar carrito</Button>
-            <Button w="200px" colorScheme="cyan" margin="5px" as={Link} to="/products" >Seguir Comprando</Button>
-            <Button w="300px" colorScheme="blue" margin="5px" onClick={()=>createOrder()}>Generar Orden</Button>
+                <Button w="200px" colorScheme='blackAlpha' margin="5px" onClick={()=>context.clearCart()}>Vaciar carrito</Button>
+                <Button w="200px" colorScheme='messenger' margin="5px" as={Link} to="/products" >Seguir Comprando</Button>
+                {context.cartContent.map((item)=>{
+                    return (
+                        <Flex justifyContent='center'>
+                            <Box w="600px" h="auto" border="2px" borderColor="black" bgColor='whiteAlpha.800' m="10px" p='3'>
+                                <h1>Producto: {item.item}</h1>
+                                <Flex justifyContent='space-between'>
+                                    <h2 style={{marginRight: '10px'}}>Cantidad: {item.count}</h2>
+                                    <Button colorScheme='yellow' onClick={()=> context.modifyQty(item.id, item.count - 1)} >-</Button>
+                                    <Button colorScheme='yellow' onClick={()=> context.modifyQty(item.id, item.count + 1)} >+</Button>
+                                </Flex>
+                                <h2>Precio: $ {item.price}</h2>
+                                <h2 style={{fontWeight: "bold"}}>Total: $ {item.count * item.price}</h2>
+                                <Button onClick={()=>context.removeItem(item.id)}>Quitar producto</Button>
+                            </Box>
+                        </Flex>
+                    )
+                })}
+                <Stack w='500px' spacing="4" margin="10px" padding="10" bgColor='blackAlpha.600'>
+                    <Input id="userName" focusBorderColor="black" placeholder="Nombre y Apellido" size="sm" bgColor='white' />
+                    <Input id="userPhone" focusBorderColor="black" placeholder="Numero de Teléfono" size="sm" bgColor='white' />
+                    <Input id="userEmail" focusBorderColor="black" placeholder="Correo Electrónico" size="sm" bgColor='white' />
+                </Stack>
+                <Button w="300px" colorScheme='messenger' margin="5px" onClick={()=>createOrder()}>Generar Orden</Button>
             </Flex>
         )
     } else {

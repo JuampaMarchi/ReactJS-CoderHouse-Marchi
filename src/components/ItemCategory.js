@@ -1,16 +1,16 @@
 import React, {useState, useEffect} from 'react';
 import ItemList from './ItemList';
+import Loader from './Loader'
 import { useParams } from 'react-router';
-import { Grid } from '@chakra-ui/react';
+import { Box, Wrap } from '@chakra-ui/react';
 import { getFirestore } from '../firebase';
 
 export default function ItemCategory(){
     const [filteredItems, setFilteredItems] = useState([])
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(true)
     const {categoryId} = useParams()
 
     useEffect(()=>{
-        setLoading(true)
         const db = getFirestore()
         const itemCollection = db.collection('items');
         const itemGroup = itemCollection.where('genre', '==', categoryId);
@@ -27,9 +27,16 @@ export default function ItemCategory(){
         })
     }, [filteredItems])
 
+    if(!loading){
+        return (
+            <Wrap border='solid 8px' borderRadius='3xl' bgColor='#cfccd6' marginTop='5' p='15px' spacing='30px' justify='center'>
+                <ItemList games={filteredItems} />
+            </Wrap>
+        )
+    }
     return (
-        <Grid templateColumns='repeat(5, 1fr)' gap={5} bg='pink' mt='5' pt='10px' pb='10px'>
-            <ItemList games={filteredItems}/>
-        </Grid>
+        <Box alignContent='center' p='10'>
+            <Loader />
+        </Box>
     )
 }
