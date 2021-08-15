@@ -1,9 +1,28 @@
 import React,  { createContext, useState } from 'react';
+import { getFirestore } from '../firebase'
 
 export const CartContext = createContext();
 
 export const CartContextProvider = ({children}) =>{
     const [cartContent, setCartContent] = useState([])
+    const [isLogged, setIsLogged] = useState(false)
+    const [loading, setLoading] = useState(false)
+
+    const signIn = (trueName, trueLastName, id, name, password, phoneNumber, mail) => {
+        const db = getFirestore()
+        const buyers = db.collection('buyers')
+
+        const newUser = {
+            userTrueName: trueName,
+            userTrueLastName: trueLastName,
+            userId: id,
+            userName: name,
+            userPassword: password,
+            userPhoneNumber: phoneNumber,
+            userEmail: mail
+        }
+        buyers.add(newUser)
+    }
 
     const clearCart = () => setCartContent([]);
 

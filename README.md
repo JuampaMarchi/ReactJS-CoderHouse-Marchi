@@ -4,5 +4,10 @@ Gaming Cove es un e-commerce dedicado a la venta de videojuegos digitales para t
 
 Tecnologias utilizadas:
 -ReactJs
--React-Router-Dom
--ChakraUI
+-React-Router-Dom (https://reactrouter.com/web/guides/quick-start)
+-React-Hook-Form (https://react-hook-form.com/)
+-React-Icons (https://www.npmjs.com/package/react-icons)
+-ChakraUI (https://chakra-ui.com/)
+-Seet Alert (https://sweetalert2.github.io/)
+-Firebase (https://firebase.google.com/)
+-WebFontLoader (https://www.npmjs.com/package/webfontloader)

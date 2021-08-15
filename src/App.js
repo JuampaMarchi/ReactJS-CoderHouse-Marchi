@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import { Container, Box } from '@chakra-ui/react'
+import WebFont from 'webfontloader';
 
 //pages
-import Home from './pages/Home';
-import About from './pages/About';
 import Contact from './pages/Contact';
 import Products from './pages/Products';
 import ProductDetail from './pages/ProductDetail';
@@ -18,8 +17,16 @@ import {CartContextProvider} from './context/CartContext';
 
 function App() {
 
+  useEffect(()=>{
+    WebFont.load({
+      google: {
+        families: ['Goldman', 'Oxanium', 'Coda']
+      }
+    })
+  }, [])
+
   return (
-  <Box bgGradient='linear(to-br, #8e8d90, #d8caf5)'>
+  <Box w='100vw' bgGradient='linear(to-br, #8e8d90, #d8caf5)'>
     <Container maxW='container.xl' centerContent>
       <CartContextProvider>
         <Router>
@@ -27,12 +34,6 @@ function App() {
           <Switch>
             <Route exact path="/">
               <Products />
-            </Route>
-            <Route exact path="/home">
-              <Home />
-            </Route>
-            <Route exact path="/about">
-              <About />
             </Route>
             <Route exact path="/products">
               <Products />

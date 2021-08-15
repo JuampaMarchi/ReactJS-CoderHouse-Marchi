@@ -16,7 +16,7 @@ export default function Item(props) {
     }, [quantityToAdd]);
 
     return (
-        <Flex p='10px' m='5px' flexDirection='column' alignItems='center' justifyContent='center' w='auto'>
+        <Flex fontFamily='Coda' p='10px' m='5px' flexDirection='column' alignItems='center' justifyContent='center' w='auto'>
             <Grid templateRows='repeat(4, 1fr)' templateColumns='repeat(2, 1fr)' w='300' border='2px' gap={3} h='250px' w='300px' borderRadius='md' bgColor='white'>
                 <GridItem rowSpan={4} ><Image src={props.products.coverLink} h='100%' /></GridItem>
                 <GridItem  ><Text as='u'>Titulo:</Text><Link to={`/products/${props.products.id}`}> {props.products.title}</Link></GridItem>
@@ -33,7 +33,7 @@ export default function Item(props) {
                 } else {
                     alert("Este producto ya esta en tu carrito")}
                 }}
-            id="go-to-cart" hidden={isHidden} colorScheme="blue" as={Link} to="/cart">Terminar Compra</Button>
+            id="go-to-cart" hidden={isHidden} colorScheme="teal" as={Link} to="/cart">Ir al Carrito</Button>
         </Flex>
     );
 }

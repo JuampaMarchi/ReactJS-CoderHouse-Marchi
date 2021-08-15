@@ -16,7 +16,6 @@ export default function ItemListHook(){
                 console.log('no results')
             }else{
                 setGames(querySnapshot.docs.map(doc => doc.data()))
-                console.log('games', games)
             }
         }).catch(error => {
             console.log('error', error)

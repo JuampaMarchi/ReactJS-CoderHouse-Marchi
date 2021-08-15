@@ -1,13 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router';
-import { Grid, GridItem, Box, Text, Image } from '@chakra-ui/react';
+import { Link, Redirect } from 'react-router-dom';
+import { Grid, GridItem, Box, Button, Image } from '@chakra-ui/react';
 import { getFirestore } from '../firebase';
 import Loader from './Loader'
+import { CartContext } from '../context/CartContext';
 
 export default function ItemDetail(){
     const [itemDb, setItemDb] = useState([])
     const [loading, setLoading] = useState(true)
     const {productId} = useParams()
+    const context = useContext(CartContext)
 
     useEffect(()=>{
         const db = getFirestore()
@@ -42,21 +45,30 @@ export default function ItemDetail(){
     }
 
     return (
-        <Grid templateRows='repeat(5, 1fr)' templateColumns='repeat(3, 1fr)' gap={4} bg='white' p='10'>
+        <Grid fontFamily='Coda' templateRows='repeat(5, 1fr)' templateColumns='repeat(2, 1fr)' gap={4} bg='white' p='10' border='solid 5px' borderRadius='3xl'>
             <GridItem rowSpan={5} colSpan={1}>
                 <Image src={itemDb[0].coverLink} />
             </GridItem>
-            <GridItem colSpan={2}>
+            <GridItem colSpan={1}>
                 <h1 style={{fontSize: '40px'}} >{itemDb[0].title}</h1>
             </GridItem>
-            <GridItem colSpan={2}>
+            <GridItem colSpan={1}>
                 <span >Género: {itemDb[0].type}</span>
             </GridItem>
-            <GridItem colSpan={2}>
+            <GridItem colSpan={1}>
                 <span >Lanzamiento: {itemDb[0].releaseDate}</span>
             </GridItem>
-            <GridItem colSpan={2}>
+            <GridItem colSpan={1}>
                 <span >Precio: ${itemDb[0].price}</span>
+            </GridItem>
+            <GridItem colSpan={1}>
+                <Button  bg='gray' w='300px' h='75px' onClick={()=>{
+                    const product = itemDb[0]
+                    product.count = 1
+                    context.addToCart(product)
+                }} as={Link} to='/cart'>
+                    <span style={{fontSize: '20px'}}>Lo Quiero!</span>
+                </Button>
             </GridItem>
         </Grid>
     )
